@@ -2,30 +2,32 @@
 #include <cmath>
 #include <algorithm>
 
+const double eps = 1e-6;
+
 Point::Point() : x(0), y(0) {}
 
 Point::Point(double x, double y) : x(x), y(y) {}
 
 bool Point::operator==(const Point& other) const {
-	return (x == other.x && y == other.y);
+	return (fabs(x - other.x) < eps && fabs(y - other.y) < eps);
 }
 
 bool Point::operator!=(const Point& other) const {
-	return (x != other.x || y != other.y);
+	return (fabs(x - other.x) >= eps || fabs(y - other.y) >= eps);
 }
 
 bool Point::operator<(const Point& other) const {
-	if (x != other.x) {
-		return x < other.x;
+	if (fabs(x - other.x) >= eps) {
+		return x - other.x < -eps;
 	}
-	return y < other.y;
+	return y - other.y < -eps;
 }
 
 bool Point::operator>(const Point& other) const {
-	if (x != other.x) {
-		return x > other.x;
+	if (fabs(x - other.x) >= eps) {
+		return x - other.x > eps;
 	}
-	return y > other.y;
+	return y - other.y > eps;
 }
 
 std::istream& operator>>(std::istream& istream, Point& point) {
