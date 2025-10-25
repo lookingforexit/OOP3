@@ -2,7 +2,7 @@
 #include <cmath>
 #include <algorithm>
 
-const double eps = 1e-6;
+constexpr double eps = 1e-6;
 
 Point::Point() : x(0), y(0) {}
 
@@ -42,13 +42,11 @@ std::ostream& operator<<(std::ostream& ostream, const Point& point) {
 	return ostream << '(' << point.x << ' ' << point.y << ')';
 }
 
-Figure::~Figure() noexcept {}
-
 Rhombus::Rhombus() : _points({Point(), Point(), Point(), Point()}) {}
 
 Rhombus::Rhombus(const Rhombus& other) : _points({other._points[0], other._points[1], other._points[2], other._points[3]}) {}
 
-Rhombus::Rhombus(Rhombus&& moved) noexcept : _points(std::move(moved._points)) {}
+Rhombus::Rhombus(Rhombus&& moved) noexcept : _points(moved._points) {}
 
 Point Rhombus::GetGeometricCenter() const {
 	double xCenterCoord = 0;
@@ -59,7 +57,7 @@ Point Rhombus::GetGeometricCenter() const {
 		yCenterCoord += _points[i].y;
 	}
 
-	return Point(xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints));
+	return {xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints)};
 }
 
 void swap(Rhombus& firstRhombus, Rhombus& secondRhombus) noexcept {
@@ -130,7 +128,7 @@ Pentagon::Pentagon() : _points({Point(), Point(), Point(), Point(), Point()}) {}
 
 Pentagon::Pentagon(const Pentagon& other) : _points({other._points[0], other._points[1], other._points[2], other._points[3], other._points[4]}) {}
 
-Pentagon::Pentagon(Pentagon&& moved) noexcept : _points(std::move(moved._points)) {}
+Pentagon::Pentagon(Pentagon&& moved) noexcept : _points(moved._points) {}
 
 Point Pentagon::GetGeometricCenter() const {
 	double xCenterCoord = 0;
@@ -141,7 +139,7 @@ Point Pentagon::GetGeometricCenter() const {
 		yCenterCoord += _points[i].y;
 	}
 
-	return Point(xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints));
+	return {xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints)};
 }
 
 void swap(Pentagon& firstPentagon, Pentagon& secondPentagon) noexcept {
@@ -220,7 +218,7 @@ Hexagon::Hexagon() : _points({Point(), Point(), Point(), Point(), Point(), Point
 
 Hexagon::Hexagon(const Hexagon& other) : _points({other._points[0], other._points[1], other._points[2], other._points[3], other._points[4], other._points[5]}) {}
 
-Hexagon::Hexagon(Hexagon&& moved) noexcept : _points(std::move(moved._points)) {}
+Hexagon::Hexagon(Hexagon&& moved) noexcept : _points(moved._points) {}
 
 Point Hexagon::GetGeometricCenter() const {
 	double xCenterCoord = 0;
@@ -231,7 +229,7 @@ Point Hexagon::GetGeometricCenter() const {
 		yCenterCoord += _points[i].y;
 	}
 
-	return Point(xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints));
+	return {xCenterCoord / static_cast<double>(_amountOfPoints), yCenterCoord / static_cast<double>(_amountOfPoints)};
 }
 
 void swap(Hexagon& firstHexagon, Hexagon& secondHexagon) noexcept {

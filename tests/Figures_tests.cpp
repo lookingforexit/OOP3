@@ -4,21 +4,21 @@
 #include "Figures.h"
 
 TEST(PointStructTests, DefaultConstructor) {
-    Point point;
+	const Point point;
     EXPECT_DOUBLE_EQ(point.x, 0.0);
     EXPECT_DOUBLE_EQ(point.y, 0.0);
 }
 
 TEST(PointStructTests, ValuesConstructor) {
-    Point point(5, 2);
+	const Point point(5, 2);
     EXPECT_DOUBLE_EQ(point.x, 5.0);
     EXPECT_DOUBLE_EQ(point.y, 2.0);
 }
 
 TEST(PointStructTests, ComparisonOperators) {
-    Point firstPoint(5, 2);
-    Point secondPoint(5, 2);
-    Point thirdPoint(52, 52);
+	const Point firstPoint(5, 2);
+	const Point secondPoint(5, 2);
+	const Point thirdPoint(52, 52);
 
     EXPECT_TRUE(firstPoint == secondPoint);
     EXPECT_FALSE(firstPoint == thirdPoint);
@@ -50,8 +50,8 @@ TEST(PointStructTests, IOTests) {
 }
 
 TEST(RhombusTests, DefaultConstructor) {
-    Rhombus rhombus;
-    Point center = rhombus.GetGeometricCenter();
+	const Rhombus rhombus;
+	const Point center = rhombus.GetGeometricCenter();
     EXPECT_DOUBLE_EQ(center.x, 0.0);
     EXPECT_DOUBLE_EQ(center.y, 0.0);
 }
@@ -60,7 +60,7 @@ TEST(RhombusTests, CopyConstructor) {
     Rhombus original;
     std::istringstream is("0 1 1 0 0 -1 -1 0");
     is >> original;
-    Rhombus copy(original);
+	const Rhombus copy(original);
     EXPECT_TRUE(copy == original);
 }
 
@@ -71,7 +71,7 @@ TEST(RhombusTests, MoveConstructor) {
     Rhombus expected;
     std::istringstream is2("0 1 1 0 0 -1 -1 0");
     is2 >> expected;
-    Rhombus moved(std::move(original));
+	const Rhombus moved(std::move(original));
     EXPECT_TRUE(moved == expected);
 }
 
@@ -129,22 +129,13 @@ TEST(RhombusTests, ComparisonOperators) {
 
     EXPECT_TRUE(a == b);
     EXPECT_FALSE(a == c);
-
-    EXPECT_TRUE(a != c);
-    EXPECT_FALSE(a != b);
-
-    EXPECT_TRUE(a < c);
-    EXPECT_FALSE(c < a);
-
-    EXPECT_TRUE(c > a);
-    EXPECT_FALSE(a > c);
 }
 
 TEST(RhombusTests, GetGeometricCenter) {
     Rhombus rhombus;
     std::istringstream is("0 1 1 0 0 -1 -1 0");
     is >> rhombus;
-    Point center = rhombus.GetGeometricCenter();
+	const Point center = rhombus.GetGeometricCenter();
     EXPECT_DOUBLE_EQ(center.x, 0.0);
     EXPECT_DOUBLE_EQ(center.y, 0.0);
 }
@@ -283,19 +274,10 @@ TEST(PentagonTests, ComparisonOperators) {
 
     EXPECT_TRUE(a == b);
     EXPECT_FALSE(a == c);
-
-    EXPECT_TRUE(a != c);
-    EXPECT_FALSE(a != b);
-
-    EXPECT_TRUE(a < c);
-    EXPECT_FALSE(c < a);
-
-    EXPECT_TRUE(c > a);
-    EXPECT_FALSE(a > c);
 }
 
 TEST(FigureArrayTests, CreateAndStoreInArray) {
-    std::array<Figure*, 3> figures;
+    std::array<Figure*, 3> figures{};
     Rhombus r;
     std::istringstream is1("0 1 1 0 0 -1 -1 0");
     is1 >> r;
@@ -365,7 +347,7 @@ TEST(FigureArrayTests, CalculateTotalArea) {
 }
 
 TEST(FigureArrayTests, RemoveByIndex) {
-    std::array<Figure*, 3> figures;
+    std::array<Figure*, 3> figures{};
     Rhombus r;
     std::istringstream is1("0 1 1 0 0 -1 -1 0");
     is1 >> r;

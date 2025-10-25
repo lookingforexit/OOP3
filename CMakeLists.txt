@@ -4,8 +4,6 @@ project(Lab1)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-enable_testing()
-
 include_directories(include)
 
 find_package(GTest QUIET)
@@ -20,4 +18,7 @@ if(NOT GTest_FOUND)
 endif()
 
 add_subdirectory(src)
+
+enable_testing()
+
 add_subdirectory(tests)

@@ -1,3 +1,7 @@
 .vscode
 .clang-format
 build
+/cmake-build-debug
+/CMakeLists.txt
+*/CMakeLists.txt
+/.idea

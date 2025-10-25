@@ -26,11 +26,11 @@ std::ostream& operator<<(std::ostream& ostream, const Point& point);
 
 class Figure {
 public:
-	virtual ~Figure() noexcept;
+	virtual ~Figure() noexcept = default;
 public:
 	virtual Point GetGeometricCenter() const = 0;
 public:
-	virtual operator double() const = 0;
+	virtual explicit operator double() const = 0;
 };
 
 class Rhombus: public Figure {
@@ -51,9 +51,9 @@ public:
 	friend std::istream& operator>>(std::istream& istream, Rhombus& rhombus);
 	friend std::ostream& operator<<(std::ostream& ostream, const Rhombus& rhombus);
 
-	operator double() const override;
+	explicit operator double() const override;
 private:
-	static const uint64_t _amountOfPoints = 4;
+	static constexpr uint64_t _amountOfPoints = 4;
 	std::array<Point, _amountOfPoints> _points;
 };
 
@@ -80,9 +80,9 @@ class Pentagon: public Figure {
 		friend std::istream& operator>>(std::istream& istream, Pentagon& pentagon);
 		friend std::ostream& operator<<(std::ostream& ostream, const Pentagon& pentagon);
 	
-		operator double() const override;
+		explicit operator double() const override;
 	private:
-		static const uint64_t _amountOfPoints = 5;
+		static constexpr uint64_t _amountOfPoints = 5;
 		std::array<Point, _amountOfPoints> _points;
 	};
 	
@@ -109,9 +109,9 @@ class Hexagon: public Figure {
 		friend std::istream& operator>>(std::istream& istream, Hexagon& hexagon);
 		friend std::ostream& operator<<(std::ostream& ostream, const Hexagon& hexagon);
 	
-		operator double() const override;
+		explicit operator double() const override;
 	private:
-		static const uint64_t _amountOfPoints = 6;
+		static constexpr uint64_t _amountOfPoints = 6;
 		std::array<Point, _amountOfPoints> _points;
 	};
 	
